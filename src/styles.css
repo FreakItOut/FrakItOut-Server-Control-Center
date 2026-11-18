@@ -1,0 +1,1044 @@
+/* ============================================================
+   FrakItOut Server Control Center - Grundgeruest
+
+   Diese Datei traegt das Layout und die klassischen Rueckfall-Stile.
+   Die sichtbare Gestaltung (Farben, Typografie, Karten, Knoepfe) kommt
+   aus theme.css, das direkt danach geladen wird. Aenderungen an der
+   Optik gehoeren dorthin - hier nur, wenn sich Abmessungen aendern.
+
+   Farbwelt aus dem Logo: Fast-Schwarz (#08080a), Graphit und ein
+   heisses Rot (#ff1f1f). Rot traegt Marke und Auswahl; Gruen/Gelb/Blau
+   bleiben Bedeutung (online, Warnung, Information).
+   ============================================================ */
+
+:root {
+  /* Markenrot, dem Logo entnommen */
+  --brand: #ff1f1f;
+  --brand-mid: #d41414;
+  --brand-dark: #ac0d0d;
+  --brand-deep: #8a0909;
+  --brand-edge: #ff6b6b;
+
+  /* Metall-Flaechen */
+  --frame-dark: #1e1e1e;
+  --frame: #353535;
+  --frame-light: #515151;
+  --bevel-light: #8b8b8b;
+  --bevel-dark: #111111;
+
+  /* Buttons */
+  --btn-top: #989898;
+  --btn-mid: #6b6b6b;
+  --btn-bot: #464646;
+  --btn-text: #101010;
+
+  /* Text */
+  --text: #d8d8d8;
+  --text-dim: #989898;
+  --text-bright: #f4f4f4;
+
+  /* Konsolenfarben wie in der Referenz */
+  --c-green: #21d021;
+  --c-yellow: #e8e52a;
+  --c-cyan: #2fd6d6;
+  --c-red: #e63c3c;
+  --c-blue: #4d9bf0;
+  --c-orange: #e08c3c;
+
+  --gold: #c8a44d;
+  --green: #21d021;
+  --red: #e63c3c;
+  --blue: #4d9bf0;
+
+  --console-bg: #050505;
+  --radius: 3px;
+}
+
+* { box-sizing: border-box; }
+
+html, body, #root { height: 100%; margin: 0; }
+
+body {
+  background: var(--frame-dark);
+  color: var(--text);
+  font-family: 'Segoe UI', Tahoma, system-ui, sans-serif;
+  font-size: 13px;
+  overflow: hidden;
+  user-select: none;
+}
+
+input, select, textarea, button { font-family: inherit; font-size: inherit; }
+
+/* ---------- Rahmen / Grundaufbau ---------- */
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: linear-gradient(180deg, #464646 0%, #2f2f2f 40%, #252525 100%);
+  padding: 3px;
+}
+
+/* ---------- Titelleiste ---------- */
+.titlebar {
+  height: 34px;
+  flex: 0 0 34px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 10px;
+  /*
+   * Einfarbig, kein Verlauf - und das ist Absicht.
+   *
+   * Die drei Fensterknoepfe zeichnet Windows selbst, das Panel kann sie
+   * nicht malen. Bekommen koennen sie nur eine einzige Farbe, und die
+   * liegt ueber dem Fensterinnen. Solange die Leiste hier einen Verlauf
+   * hatte, stand die Knopfflaeche als dunkles Rechteck darin:
+   *
+   *     y  Leiste      Rahmen      Abstand
+   *     5   #666666     #3d4248      61
+   *     9   #5c5c5c     #3d4248      45
+   *    13   #515151     #3d4248      27
+   *
+   * Ein Verlauf und eine Flaeche koennen nicht uebereinstimmen - an
+   * einem Ende immer, an beiden nie. Also ist die Flaeche weg. Die
+   * erhabene Wirkung bleibt trotzdem: die Kanten oben (#8b8b8b) und
+   * unten (#111111) tragen sie jetzt allein.
+   *
+   * Der Wert muss mit TITLEBAR_FARBE in electron/main.js uebereinstimmen.
+   * verify-titelleiste.js prueft das.
+   */
+  background: #08080a;
+  border: 1px solid var(--bevel-dark);
+  border-top-color: var(--bevel-light);
+  border-radius: 3px 3px 0 0;
+  -webkit-app-region: drag;
+  font-size: 12px;
+  font-weight: 700;
+  color: #f2f2f2;
+  text-shadow: 0 1px 0 rgba(0,0,0,.6);
+  user-select: none;
+}
+.titlebar .app-icon {
+  width: 17px; height: 17px;
+  display: flex; align-items: center; justify-content: center;
+  flex: 0 0 auto;
+}
+.titlebar .app-icon img {
+  width: 17px; height: 17px;
+  display: block;
+  -webkit-app-region: no-drag;
+}
+.titlebar .tb-text { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.titlebar .tb-time { margin-left: auto; padding-right: 138px; font-weight: 400; color: #d0d0d0; }
+
+/* ---------- Inhaltsbereich ---------- */
+.body { flex: 1; display: flex; min-height: 0; padding: 3px 0; }
+
+/* ---------- Linke Button-Spalte ---------- */
+.sidebar {
+  width: 186px;
+  flex: 0 0 186px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 4px;
+  background: linear-gradient(90deg, #383838 0%, #2d2d2d 100%);
+  border: 1px solid var(--bevel-dark);
+  border-right-color: var(--bevel-light);
+  border-radius: 3px 0 0 3px;
+  overflow-y: auto;
+}
+
+.nav-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 9px;
+  background: linear-gradient(180deg, var(--btn-top) 0%, var(--btn-mid) 48%, var(--btn-bot) 52%, #3c3c3c 100%);
+  border: 1px solid var(--bevel-dark);
+  border-top-color: #b6b6b6;
+  border-left-color: #a6a6a6;
+  border-radius: var(--radius);
+  color: var(--btn-text);
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 12.5px;
+  font-weight: 600;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.28);
+}
+.nav-btn:hover { background: linear-gradient(180deg, #b0b0b0 0%, #7a7a7a 48%, #515151 52%, #494949 100%); }
+.nav-btn:active { box-shadow: inset 0 2px 4px rgba(0,0,0,.45); }
+.nav-btn.active {
+  /* Markenrot aus dem Logo (#FD0F0F), als Verlauf abgedunkelt.
+     Bewusst nur der aktive Menuepunkt: "Online" bleibt gruen und
+     "Gefahr" bleibt rot - beides sagt etwas ueber den Serverzustand
+     und darf nicht als Dekoration umgewidmet werden. */
+  background: linear-gradient(180deg, #ff3333 0%, #d41414 48%, #ac0d0d 52%, #8a0909 100%);
+  border-top-color: #ff6b6b;
+  color: #fff2f2;
+  text-shadow: 0 1px 0 rgba(0,0,0,.4);
+}
+.nav-btn .nb-icon { width: 15px; text-align: center; font-size: 13px; flex: 0 0 15px; }
+.nav-btn .nb-badge {
+  margin-left: auto;
+  font-size: 10px;
+  padding: 0 5px;
+  border-radius: 8px;
+  background: rgba(0,0,0,.35);
+  color: #fefefe;
+}
+
+.nav-sep { height: 9px; flex: 0 0 9px; }
+
+/* Markenzeichen mittig unter dem letzten Menuepunkt.
+   Die Leiste ist 186px breit; das Bild darf nicht breiter werden, sonst
+   scrollt die Navigation. margin-top: auto schiebt es nach unten an den
+   Fuss, damit es bei vielen Eintraegen unten klebt.
+
+   Das Logo ist eine schwarze Kachel. Ohne Rahmen kaeme sie auf der dunklen
+   Leiste wie ein Loch heraus, deshalb bekommt sie dieselbe Fase wie die
+   uebrigen Knoepfe - dann liest sie sich als Schild und nicht als Fehlstelle. */
+.nav-brand {
+  margin-top: auto;
+  padding: 9px 8px 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.nav-brand img {
+  width: 100%;
+  max-width: 158px;
+  height: auto;
+  display: block;
+  border: 1px solid var(--bevel-dark);
+  border-top-color: #7c7c7c;
+  border-left-color: #6c6c6c;
+  border-radius: var(--radius);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .5);
+}
+
+/* ---------- Hinweis beim Ueberfahren eines Menuepunkts ----------
+
+   Liegt ausserhalb der Seitenleiste (siehe MenueHinweis.jsx) und deshalb
+   mit position: fixed am Bildschirm. pointer-events: none, damit die Maus
+   nicht darauf haengen bleibt und der Knopf den Hover nicht verliert.
+
+   Links ein Streifen in Markenrot - dieselbe Farbe wie der aktive
+   Menuepunkt. So gehoeren Hinweis und Leiste sichtbar zusammen. */
+.menue-hinweis {
+  position: fixed;
+  z-index: 60;
+  max-width: 260px;
+  padding: 7px 11px;
+  background: linear-gradient(180deg, #2b2b2b 0%, #1e1e1e 100%);
+  border: 1px solid var(--bevel-dark);
+  border-left: 3px solid var(--brand);
+  border-radius: var(--radius);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, .6);
+  pointer-events: none;
+  animation: mh-auf 110ms ease-out;
+}
+.menue-hinweis .mh-titel {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-bright);
+  margin-bottom: 2px;
+}
+.menue-hinweis .mh-text {
+  font-size: 11.5px;
+  line-height: 1.35;
+  color: var(--text-dim);
+}
+
+/* Kurzes Aufblenden. Ohne das wirkt der Kasten wie ein Absturz beim
+   Vorbeifahren der Maus. */
+@keyframes mh-auf {
+  from { opacity: 0; transform: translateX(-4px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* Wer keine bewegten Uebergaenge mag, bekommt keine - der Hinweis
+   erscheint dann sofort. */
+@media (prefers-reduced-motion: reduce) {
+  .menue-hinweis { animation: none; }
+}
+
+.nav-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: #8c8c8c;
+  text-align: center;
+  padding: 4px 0 1px;
+  font-weight: 700;
+}
+
+/* ---------- Hauptbereich ---------- */
+.main { flex: 1; display: flex; flex-direction: column; min-width: 0; padding-left: 3px; }
+
+.topbar {
+  height: 46px;
+  flex: 0 0 46px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 0 12px;
+  background: linear-gradient(180deg, #565656 0%, #3c3c3c 60%, #333333 100%);
+  border: 1px solid var(--bevel-dark);
+  border-top-color: var(--bevel-light);
+  border-radius: 3px 3px 0 0;
+}
+.topbar h2 { margin: 0; font-size: 14px; font-weight: 700; color: var(--text-bright); text-shadow: 0 1px 0 rgba(0,0,0,.5); }
+.topbar .sub { color: #a9a9a9; font-size: 11.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.topbar > div:first-child { min-width: 0; }
+
+.content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px;
+  background: linear-gradient(180deg, #2f2f2f 0%, #272727 100%);
+  border: 1px solid var(--bevel-dark);
+  border-top: none;
+  border-radius: 0 0 3px 3px;
+}
+
+/* ---------- Statusleiste ---------- */
+.statusbar {
+  height: 24px;
+  flex: 0 0 24px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 0 10px;
+  font-size: 11.5px;
+  color: #c4c4c4;
+  background: linear-gradient(180deg, #474747 0%, #333333 100%);
+  border: 1px solid var(--bevel-dark);
+  border-top-color: var(--bevel-light);
+  border-radius: 0 0 3px 3px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.statusbar .sb-warn { color: var(--c-red); font-weight: 600; }
+.statusbar .sb-item { display: inline-flex; gap: 5px; align-items: center; }
+.statusbar .sb-on { color: var(--c-green); font-weight: 700; }
+.statusbar .sb-off { color: #898989; font-weight: 600; }
+.statusbar .sb-note { color: #aaaaaa; font-style: italic; overflow: hidden; text-overflow: ellipsis; }
+
+/* Sprachauswahl - fester Platz ganz links in der Statusleiste */
+.statusbar .sb-lang {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  flex: 0 0 auto;
+  padding-right: 10px;
+  border-right: 1px solid rgba(0, 0, 0, .35);
+  cursor: pointer;
+}
+.statusbar .sb-lang-label { color: #aaaaaa; font-weight: 600; }
+.statusbar .sb-lang-select {
+  height: 18px;
+  min-width: 82px;
+  padding: 0 4px;
+  font-size: 11.5px;
+  font-family: inherit;
+  color: #e9e9e9;
+  background: #2b2b2b;
+  border: 1px solid var(--bevel-dark);
+  border-radius: 2px;
+  cursor: pointer;
+}
+.statusbar .sb-lang-select:focus-visible { outline: 1px solid #ff3333; outline-offset: 1px; }
+
+/* ---------- Status-Chips (oben) ---------- */
+.status-chips { display: flex; gap: 6px; align-items: center; }
+.chip {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 3px 8px;
+  font-size: 11px; font-weight: 600;
+  background: #282828;
+  border: 1px solid var(--bevel-dark);
+  border-top-color: #626262;
+  border-radius: 9px;
+  color: #cacaca;
+}
+.dot { width: 7px; height: 7px; border-radius: 50%; background: #4b4b4b; }
+.dot.on { background: var(--c-green); box-shadow: 0 0 5px rgba(33,208,33,.8); }
+.dot.off { background: #686868; }
+
+/* ---------- Karten ---------- */
+.card {
+  background: #2f2f2f;
+  border: 1px solid var(--bevel-dark);
+  border-top-color: #666666;
+  border-radius: var(--radius);
+  margin-bottom: 10px;
+}
+.card-head {
+  padding: 7px 10px;
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  background: linear-gradient(180deg, #585858 0%, #404040 100%);
+  border-bottom: 1px solid var(--bevel-dark);
+}
+.card-head h3 { margin: 0; font-size: 12.5px; font-weight: 700; color: #f2f2f2; text-shadow: 0 1px 0 rgba(0,0,0,.5); }
+.card-body { padding: 11px; }
+.card-body.tight { padding: 0; }
+
+/*
+ * Gruppenkoepfe auf der Seite "Server Raten".
+ *
+ * Die Raten einer worldserver.conf sind schnell ueber 90 Stueck. Als
+ * flache Liste geht der gesuchte Wert unter; gruppiert findet man ihn.
+ * Der Kopf nimmt das Aussehen der Titelleiste einer Karte auf, damit er
+ * nicht wie ein Fremdkoerper wirkt - nur eine Stufe kleiner und ohne
+ * eigenen Rahmen, weil er zur selben Karte gehoert.
+ */
+/* Der Hilfetext steht unter dem Namen und dem Schluessel. Ohne ihn steht
+   bei Rate.Drop.Item.* achtmal dasselbe Wort - welcher Wert was tut, ist
+   dann nicht mehr erkennbar. */
+.rates-beschriftung { flex: 0 0 300px; min-width: 300px; }
+.rates-hilfe {
+  margin-top: 3px;
+  font-size: 11.5px;
+  line-height: 1.4;
+  color: #b4b4b4;
+  /* Auf zwei Zeilen begrenzt: manche Beschreibungen des Kerns sind sehr
+     lang, und eine einzelne Zeile darf die Liste nicht aufblaehen. */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/*
+ * Modul-Seite: Modulliste links, Einstellungen rechts.
+ *
+ * Das Seitenverhaeltnis ist nicht Kosmetik. Die groesste Datei
+ * (mod_weather_vibe.conf) hat ueber 2000 Schluessel; die Liste waere
+ * ohne Suche unbedienbar, und die Modulliste muss trotzdem im Blick
+ * bleiben, sonst findet man den Weg zurueck nicht.
+ */
+.modules-layout {
+  display: grid;
+  grid-template-columns: 230px minmax(0, 1fr);
+  gap: 10px;
+  align-items: start;
+}
+@media (max-width: 900px) {
+  .modules-layout { grid-template-columns: 1fr; }
+}
+.modules-liste {
+  border: 1px solid var(--bevel-dark);
+  border-radius: var(--radius);
+  background: #262626;
+  padding: 8px;
+  position: sticky;
+  top: 8px;
+  max-height: calc(100vh - 190px);
+  overflow-y: auto;
+}
+.modules-liste-inner { display: flex; flex-direction: column; gap: 2px; }
+.modules-eintrag {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  width: 100%;
+  text-align: left;
+  padding: 4px 7px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  color: #d8d8d8;
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+.modules-eintrag:hover { background: #333; border-color: var(--bevel-dark); }
+.modules-eintrag.aktiv {
+  background: linear-gradient(180deg, #585858 0%, #404040 100%);
+  border-color: #6a6a6a;
+  color: #fff;
+  font-weight: 700;
+}
+.modules-eintrag-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+/* Das Zeichen fuer "es gibt eine Sicherung" - dezent, sonst faellt es
+   auf der Modulliste laenger auf als der Text daneben. */
+.modules-marke { color: var(--gold); font-size: 11px; flex: 0 0 auto; }
+
+/* Sortierbare Spaltenueberschriften. */
+th.sortable {
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+}
+th.sortable:hover {
+  color: var(--text-bright);
+  background: rgba(255, 255, 255, .04);
+}
+
+/*
+ * An/Aus-Markierung der Module.
+ *
+ * Ohne sie muss man jedes Modul oeffnen und nach dem Enable-Schalter
+ * suchen. Bei 76 Modulen mit 291 Enable-Schaltern ist das die
+ * haeufigste Frage ueberhaupt.
+ *
+ * Gruen = mindestens ein Schalter eingeschaltet. Die Zahl dahinter
+ * sagt, wie viele der vorhandenen Schalter an sind - "3/9" heisst: das
+ * Modul laeuft, aber nicht mit allem.
+ */
+.modules-status {
+  font-size: 9.5px;
+  font-weight: 700;
+  flex: 0 0 auto;
+  letter-spacing: -0.2px;
+}
+.modules-status.aktiv { color: #6fce6f; }
+.modules-status.aus { color: #6a6a6a; }
+
+.module-detail { min-width: 0; }
+.module-settings { max-height: calc(100vh - 400px); overflow-y: auto; padding-right: 4px; }
+.module-setting {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 6px 2px;
+  border-bottom: 1px solid rgba(0, 0, 0, .25);
+}
+.module-setting:last-child { border-bottom: none; }
+.module-setting-text { flex: 1; min-width: 0; }
+.module-setting-help {
+  margin-top: 2px;
+  font-size: 11.5px;
+  line-height: 1.4;
+  color: #b4b4b4;
+}
+/* Eigene, uebersetzte Texte stehen einen Tick heller als der
+   Originaltext des Modulautors - so ist auf einen Blick erkennbar, was
+   von hier kommt und was aus der Datei. */
+.module-setting-help.eigen { color: #cfcfcf; }
+/* Das "EN" neben dem Originaltext. Klein, weil es eine Ausnahme ist
+   und keine Meldung. */
+.module-herkunft {
+  margin-left: 5px;
+  font-size: 9px;
+  font-weight: 700;
+  color: #8a8a8a;
+  border: 1px solid #5a5a5a;
+  border-radius: 2px;
+  padding: 0 3px;
+  vertical-align: 1px;
+}
+.module-setting-value {
+  flex: 0 0 150px;
+  min-width: 150px;
+  text-align: right;
+}
+
+.rates-gruppe { margin-bottom: 4px; }
+.rates-gruppe-kopf {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 14px 0 8px;
+  padding: 0 2px 5px;
+  border-bottom: 1px solid var(--bevel-dark);
+}
+.rates-gruppe:first-child .rates-gruppe-kopf { margin-top: 4px; }
+.rates-gruppe-kopf h4 {
+  margin: 0;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #f2f2f2;
+  text-shadow: 0 1px 0 rgba(0,0,0,.5);
+}
+/* Anzahl rechts daneben, klein und still */
+.rates-gruppe-kopf .muted { font-size: 11px; }
+/* Der Abstand zwischen den Zeilen einer Gruppe ist kleiner als zwischen
+   zwei Gruppen - so gehoeren die Zeilen sichtbar zusammen. */
+.rates-gruppe .card { margin-bottom: 5px; }
+.rates-gruppe .card:last-child { margin-bottom: 0; }
+
+.grid { display: grid; gap: 10px; }
+.grid.cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.grid.cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.grid.cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+@media (max-width: 1100px) { .grid.cols-4, .grid.cols-3 { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+@media (max-width: 760px) { .grid.cols-2, .grid.cols-3, .grid.cols-4 { grid-template-columns: 1fr; } }
+
+.stat {
+  background: linear-gradient(180deg, #393939 0%, #303030 100%);
+  border: 1px solid var(--bevel-dark);
+  border-top-color: #6a6a6a;
+  border-radius: var(--radius);
+  padding: 10px 12px;
+}
+.stat .label { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: #929292; font-weight: 700; }
+.stat .value { font-size: 22px; font-weight: 700; margin-top: 4px; color: var(--text-bright); }
+.stat .value.gold { color: var(--gold); }
+.stat .value.green { color: var(--c-green); }
+.stat .value.red { color: var(--c-red); }
+.stat .sub { font-size: 11px; color: #929292; margin-top: 3px; }
+
+/* ---------- Tabellen ---------- */
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+thead th {
+  text-align: left; padding: 6px 9px;
+  background: linear-gradient(180deg, #525252 0%, #3c3c3c 100%);
+  color: #eaeaea;
+  font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: .5px;
+  border-bottom: 1px solid var(--bevel-dark);
+  border-right: 1px solid #272727;
+  white-space: nowrap;
+}
+tbody td { padding: 5px 9px; border-bottom: 1px solid #262626; border-right: 1px solid #262626; white-space: nowrap; }
+tbody tr:hover { background: #383838; }
+tbody tr.clickable { cursor: pointer; }
+td.num, th.num { text-align: right; }
+td.mono, .mono { font-family: Consolas, 'Courier New', monospace; }
+.empty { padding: 20px; text-align: center; color: #898989; }
+
+/* ---------- Formulare ---------- */
+.field { margin-bottom: 10px; }
+.field label { display: block; margin-bottom: 4px; font-size: 11.5px; font-weight: 600; color: #b4b4b4; }
+.field .hint { margin-top: 3px; font-size: 11px; color: #838383; }
+input[type=text], input[type=password], input[type=number], select, textarea {
+  width: 100%;
+  padding: 5px 8px;
+  background: #1e1e1e;
+  color: var(--text-bright);
+  border: 1px solid var(--bevel-dark);
+  border-bottom-color: #6a6a6a;
+  border-radius: 2px;
+  outline: none;
+  user-select: text;
+}
+input:focus, select:focus, textarea:focus {
+  /* Fokus in Markenrot. Vorher Blau - das war die letzte kalte Farbe im
+     Panel und fiel als Fremdkoerper auf, seit die Flaechen neutral sind. */
+  border-color: #ff3333;
+  box-shadow: inset 0 0 0 1px rgba(255,51,51,.35);
+}
+textarea { resize: vertical; min-height: 70px; font-family: Consolas, 'Courier New', monospace; font-size: 12px; }
+input[type=checkbox] { width: auto; accent-color: var(--brand); }
+.check-row { display: flex; align-items: center; gap: 7px; font-size: 12px; }
+.row { display: flex; gap: 9px; flex-wrap: wrap; }
+.row > * { flex: 1; min-width: 120px; }
+.row.tight { gap: 7px; }
+.inline { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; }
+
+/* ---------- Buttons (3D) ---------- */
+.btn {
+  padding: 5px 12px;
+  background: linear-gradient(180deg, var(--btn-top) 0%, var(--btn-mid) 48%, var(--btn-bot) 52%, #3c3c3c 100%);
+  border: 1px solid var(--bevel-dark);
+  border-top-color: #b6b6b6;
+  border-radius: var(--radius);
+  color: var(--btn-text);
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 12px;
+  white-space: nowrap;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.25);
+  -webkit-app-region: no-drag;
+}
+.btn:hover:not(:disabled) { background: linear-gradient(180deg, #b0b0b0 0%, #7a7a7a 48%, #515151 52%, #494949 100%); }
+.btn:active:not(:disabled) { box-shadow: inset 0 2px 4px rgba(0,0,0,.45); }
+.btn:disabled { opacity: .4; cursor: not-allowed; }
+.btn.primary { background: linear-gradient(180deg, #4c9a4c 0%, #2f7a2f 48%, #235f23 52%, #1d501d 100%); border-top-color: #7fc97f; color: #f2fff2; }
+.btn.primary:hover:not(:disabled) { background: linear-gradient(180deg, #5cb35c 0%, #39903a 48%, #2a7029 52%, #236023 100%); }
+.btn.danger { background: linear-gradient(180deg, #b04a4a 0%, #8f3434 48%, #762929 52%, #632323 100%); border-top-color: #e08a8a; color: #fff0f0; }
+.btn.danger:hover:not(:disabled) { background: linear-gradient(180deg, #c85b5b 0%, #a23f3f 48%, #873232 52%, #712929 100%); }
+.btn.success { background: linear-gradient(180deg, #4c9a4c 0%, #2f7a2f 48%, #235f23 52%, #1d501d 100%); border-top-color: #7fc97f; color: #f2fff2; }
+.btn.sm { padding: 3px 8px; font-size: 11.5px; }
+
+/* ---------- Tabs ---------- */
+.tabs { display: flex; gap: 2px; margin-bottom: 10px; border-bottom: 1px solid var(--bevel-dark); }
+.tab {
+  padding: 5px 13px; cursor: pointer;
+  background: linear-gradient(180deg, #4a4a4a 0%, #363636 100%);
+  color: #bbbbbb;
+  border: 1px solid var(--bevel-dark);
+  border-bottom: none;
+  border-radius: 3px 3px 0 0;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: -1px;
+}
+.tab:hover { color: #fefefe; }
+.tab.active { background: linear-gradient(180deg, #696969 0%, #4f4f4f 100%); color: #fefefe; }
+
+/* ---------- Pills ---------- */
+.pill {
+  display: inline-block; padding: 1px 7px; border-radius: 9px;
+  font-size: 10.5px; font-weight: 700; letter-spacing: .3px;
+  border: 1px solid transparent;
+}
+.pill.online { background: rgba(33,208,33,.16); color: var(--c-green); border-color: rgba(33,208,33,.4); }
+.pill.offline { background: #262626; color: #999999; border-color: var(--bevel-dark); }
+.pill.gm { background: rgba(200,164,77,.16); color: var(--gold); border-color: rgba(200,164,77,.45); }
+.pill.ban { background: rgba(230,60,60,.16); color: #f08080; border-color: rgba(230,60,60,.4); }
+.pill.info { background: rgba(77,155,240,.16); color: #8cc0f5; border-color: rgba(77,155,240,.4); }
+
+/* ---------- Konsole ---------- */
+.console {
+  background: var(--console-bg);
+  border: 1px solid var(--bevel-dark);
+  border-top: none;
+  border-radius: var(--radius);
+  font-family: Consolas, 'Courier New', monospace;
+  font-size: 12px;
+  line-height: 1.5;
+  padding: 9px 11px;
+  height: 420px;
+  overflow-y: auto;
+  user-select: text;
+  text-shadow: 0 0 3px rgba(0,0,0,.9);
+}
+.console .line { white-space: pre-wrap; word-break: break-word; color: #c9c9c9; }
+.console .line.green { color: var(--c-green); }
+.console .line.yellow { color: var(--c-yellow); }
+.console .line.cyan { color: var(--c-cyan); }
+.console .line.red { color: var(--c-red); }
+.console .line.blue { color: var(--c-blue); }
+.console .line.orange { color: var(--c-orange); }
+.console .line.system { color: var(--c-cyan); font-weight: 700; }
+.console .line.stderr { color: var(--c-red); }
+.console .line.cmd { color: var(--c-blue); font-weight: 700; }
+.console .line.dim { color: #595959; }
+.console .line.prompt { color: var(--c-green); }
+
+/* ---------- Modal ---------- */
+.overlay { position: fixed; inset: 0; background: rgba(0,0,0,.65); display: flex; align-items: center; justify-content: center; z-index: 100; padding: 20px; }
+.modal {
+  background: #313131;
+  border: 1px solid var(--bevel-dark);
+  border-top-color: var(--bevel-light);
+  border-radius: 4px;
+  width: 100%; max-width: 560px; max-height: 88vh;
+  display: flex; flex-direction: column;
+  box-shadow: 0 18px 50px rgba(0,0,0,.7);
+}
+.modal.lg { max-width: 900px; }
+.modal-head { padding: 8px 11px; display: flex; justify-content: space-between; align-items: center; background: linear-gradient(180deg, #585858 0%, #404040 100%); border-bottom: 1px solid var(--bevel-dark); }
+.modal-head h3 { margin: 0; font-size: 13px; font-weight: 700; color: #f2f2f2; }
+.modal-body { padding: 13px; overflow-y: auto; }
+.modal-foot { padding: 9px 11px; border-top: 1px solid var(--bevel-dark); display: flex; justify-content: flex-end; gap: 7px; background: #2c2c2c; }
+
+/* ---------- Toasts ---------- */
+.toasts { position: fixed; bottom: 32px; right: 14px; display: flex; flex-direction: column; gap: 6px; z-index: 200; max-width: 380px; }
+.toast {
+  padding: 8px 11px; border-radius: 3px; font-size: 12px;
+  background: #353535; border: 1px solid var(--bevel-dark);
+  border-left-width: 3px;
+  box-shadow: 0 6px 18px rgba(0,0,0,.55);
+  user-select: text;
+}
+.toast.ok { border-left-color: var(--c-green); }
+.toast.err { border-left-color: var(--c-red); }
+.toast.info { border-left-color: var(--c-blue); }
+
+/* ---------- Suchergebnisse ---------- */
+.results { max-height: 280px; overflow-y: auto; border: 1px solid var(--bevel-dark); border-radius: 2px; }
+.result-row {
+  padding: 5px 9px; cursor: pointer;
+  border-bottom: 1px solid #262626;
+  font-size: 12.5px;
+  display: flex; justify-content: space-between; gap: 9px; align-items: center;
+}
+.result-row:hover { background: #393939; }
+.result-row .meta { color: #929292; font-size: 11px; }
+
+/* ---------- Texte ---------- */
+.muted { color: var(--text-dim); }
+.right { text-align: right; }
+.mb0 { margin-bottom: 0; }
+.mt { margin-top: 11px; }
+.nowrap { white-space: nowrap; }
+.flex-1 { flex: 1; }
+.spinner { padding: 22px; text-align: center; color: var(--text-dim); }
+
+.error-box, .ok-box, .info-box {
+  padding: 8px 11px; border-radius: 2px; font-size: 12px; user-select: text;
+  border: 1px solid;
+}
+.error-box { background: rgba(230,60,60,.1); border-color: rgba(230,60,60,.4); color: #f09090; }
+.ok-box { background: rgba(33,208,33,.1); border-color: rgba(33,208,33,.4); color: #7fe07f; }
+.info-box { background: rgba(77,155,240,.09); border-color: rgba(77,155,240,.3); color: #a8cbf0; }
+
+/*
+ * Ausgabe eines Konsolenbefehls.
+ *
+ * Der Core antwortet mit Zeilenumbruechen - "server info" liefert sieben
+ * Zeilen mit Versionsangabe, Spielern und Laufzeit. Ohne
+ * white-space: pre-wrap fallen die im HTML zu einer einzigen langen
+ * Zeile zusammen und der Text wird unlesbar.
+ *
+ * Der Kasten bekommt eine eigene, dunklere Fläche: die gruene oder rote
+ * Fläche darum ist eine Meldung, die Ausgabe darunter ist Text, kein
+ * Hinweis. Beides in einer Farbe zu mischen hätte den Unterschied
+ * verwischt.
+ */
+.befehl-ausgabe {
+  margin: 7px 0 1px;
+  padding: 7px 9px;
+  background: #101010;
+  border: 1px solid rgba(0,0,0,.6);
+  border-radius: 2px;
+  color: #cfcfcf;
+  font-family: Consolas, 'Courier New', monospace;
+  font-size: 11.5px;
+  line-height: 1.45;
+  white-space: pre-wrap;
+  word-break: break-word;
+  max-height: 260px;
+  overflow-y: auto;
+  user-select: text;
+}
+
+/* Die Antwortspalte im Verlauf. */
+.verlauf-antwort {
+  font-size: 11.5px;
+  color: #9a9a9a;
+  max-width: 0;       /* erzwingt, dass die Spalte den Rest einnimmt */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.verlauf-fehler { color: #e08c8c; font-weight: 700; }
+
+/* ---------- Laufband im Titelbereich der Konsole ---------- */
+.console-tools { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+
+::-webkit-scrollbar { width: 11px; height: 11px; }
+::-webkit-scrollbar-track { background: #202020; border-left: 1px solid var(--bevel-dark); }
+::-webkit-scrollbar-thumb { background: linear-gradient(90deg, #6a6a6a, #464646); border-radius: 4px; border: 1px solid var(--bevel-dark); }
+::-webkit-scrollbar-thumb:hover { background: linear-gradient(90deg, #808080, #555555); }
+/* ---------- Einrichtungsassistent ---------- */
+.setup {
+  position: fixed; inset: 0; z-index: 300;
+  display: flex; align-items: center; justify-content: center;
+  padding: 24px;
+  background: radial-gradient(circle at 50% 30%, #373737 0%, #1f1f1f 70%);
+}
+.setup-box {
+  width: 100%; max-width: 720px; max-height: 92vh;
+  display: flex; flex-direction: column;
+  background: #313131;
+  border: 1px solid var(--bevel-dark);
+  border-top-color: var(--bevel-light);
+  border-radius: 5px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, .65);
+  overflow: hidden;
+}
+.setup-head {
+  display: flex; align-items: center; gap: 12px;
+  padding: 14px 16px;
+  background: linear-gradient(180deg, #585858 0%, #404040 100%);
+  border-bottom: 1px solid var(--bevel-dark);
+}
+.setup-logo { width: 34px; height: 34px; flex: 0 0 auto; }
+.setup-head h1 { margin: 0; font-size: 17px; }
+.setup-head .sub { font-size: 12px; color: #c3c3c3; margin-top: 2px; }
+
+.setup-steps {
+  display: flex; gap: 6px; list-style: none;
+  margin: 0; padding: 12px 16px;
+  background: #2b2b2b;
+  border-bottom: 1px solid var(--bevel-dark);
+}
+.setup-steps li {
+  display: flex; align-items: center; gap: 7px;
+  flex: 1; padding: 7px 10px;
+  font-size: 12px; color: #979797;
+  background: #333333;
+  border: 1px solid var(--bevel-dark);
+  border-radius: 3px;
+}
+.setup-steps li.aktiv { color: #fefefe; border-color: var(--c-cyan); background: #3c3c3c; }
+.setup-steps li.fertig { color: var(--c-green); }
+.setup-steps .punkt {
+  width: 18px; height: 18px; flex: 0 0 auto;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 700;
+  background: #252525; border-radius: 50%;
+  border: 1px solid var(--bevel-dark);
+}
+
+.setup-body { padding: 16px; overflow-y: auto; flex: 1 1 auto; min-height: 0; }
+.setup-body p { margin: 0 0 12px; color: #d0d0d0; line-height: 1.5; }
+
+.setup-suggest { margin-top: 14px; }
+.setup-suggest .label {
+  font-size: 11px; text-transform: uppercase;
+  letter-spacing: .6px; color: #989898; margin-bottom: 6px;
+}
+.suggest-row {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  width: 100%; padding: 7px 10px; margin-bottom: 4px;
+  font: inherit; font-size: 12px; color: #e1e1e1; text-align: left;
+  background: #2b2b2b;
+  border: 1px solid var(--bevel-dark);
+  border-radius: 3px; cursor: pointer;
+}
+.suggest-row:hover { background: #363636; border-color: #565656; }
+.suggest-row .mono { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.suggest-row .badge {
+  flex: 0 0 auto; font-size: 10px; font-weight: 700;
+  padding: 2px 6px; border-radius: 2px;
+  background: #474747; color: #cdcdcd;
+}
+
+.setup-result { margin: 12px 0; }
+.setup-result .ok, .setup-result .bad {
+  display: flex; align-items: center; gap: 8px;
+  padding: 5px 9px; margin-bottom: 3px;
+  font-size: 12.5px; border-radius: 3px;
+  background: #2b2b2b; border: 1px solid var(--bevel-dark);
+}
+.setup-result .ok { color: var(--c-green); }
+.setup-result .bad { color: var(--c-red); }
+.setup-result .hint { color: #989898; }
+
+.warn-line { color: var(--c-yellow, #d8c46a); margin-top: 4px; }
+
+.setup-foot {
+  display: flex; align-items: center; gap: 7px;
+  padding: 11px 16px;
+  background: #2c2c2c;
+  border-top: 1px solid var(--bevel-dark);
+}
+.field.sm { width: 110px; flex: 0 0 auto; }
+
+/* Warnhinweis im Assistenten */
+.warn-box {
+  padding: 8px 11px; margin-bottom: 11px;
+  font-size: 12.5px; line-height: 1.45;
+  color: #e8d79a;
+  background: rgba(190, 155, 60, .12);
+  border: 1px solid rgba(190, 155, 60, .5);
+  border-radius: 3px;
+}
+.setup-result .warn { color: var(--c-yellow, #d8c46a); }
+
+/* Sprachauswahl im Assistenten */
+.setup-head-text { flex: 1; min-width: 0; }
+.setup-lang {
+  display: flex; align-items: center; gap: 6px;
+  flex: 0 0 auto; padding-left: 12px;
+  border-left: 1px solid rgba(0, 0, 0, .35);
+}
+.setup-lang-label { font-size: 12px; color: #cdcdcd; }
+.setup-lang select {
+  height: 26px; padding: 0 6px;
+  font-size: 12px; font-family: inherit; color: #f0f0f0;
+  background: #2b2b2b;
+  border: 1px solid var(--bevel-dark);
+  border-radius: 3px; cursor: pointer;
+}
+.setup-lang select:focus-visible { outline: 1px solid #ff3333; outline-offset: 1px; }
+
+/* ---------- Automatische Einrichtung ---------- */
+.setup-modes {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+  padding: 12px 16px;
+  background: #2f2f2f;
+  border-bottom: 1px solid var(--bevel-dark);
+}
+.mode-card {
+  display: flex; flex-direction: column; gap: 3px;
+  padding: 9px 11px;
+  font: inherit; text-align: left; color: #cfcfcf;
+  background: #333333;
+  border: 1px solid var(--bevel-dark);
+  border-radius: 3px; cursor: pointer;
+}
+.mode-card strong { font-size: 12.5px; color: #f0f0f0; }
+.mode-card span { font-size: 11px; line-height: 1.4; color: #9a9a9a; }
+.mode-card:hover { background: #3a3a3a; border-color: #575757; }
+.mode-card.aktiv { border-color: var(--c-cyan); background: #3c3c3c; }
+.mode-card.aktiv strong { color: var(--c-cyan); }
+.mode-card:disabled { opacity: .55; cursor: not-allowed; }
+
+.install p { margin: 0 0 12px; color: #d0d0d0; line-height: 1.5; }
+.install .row { margin-bottom: 4px; align-items: flex-end; }
+.install .row .field { margin-bottom: 6px; }
+.install .row > .btn { flex: 0 0 auto; min-width: 0; margin-bottom: 6px; }
+.hint-line { display: block; font-size: 11px; line-height: 1.45; color: #8f8f8f; margin: 2px 0 10px; }
+
+.install-tools { display: flex; flex-wrap: wrap; gap: 5px; margin: 8px 0 10px; }
+.install-tools .tool {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 3px 8px; font-size: 11.5px;
+  background: #2b2b2b; border: 1px solid var(--bevel-dark); border-radius: 3px;
+}
+.install-tools .tool.ok { color: #7fe07f; border-color: rgba(33, 208, 33, .35); }
+.install-tools .tool.missing { color: #e8d79a; border-color: rgba(190, 155, 60, .45); }
+
+.install .check-row {
+  align-items: flex-start;
+  margin: 6px 0;
+}
+.install .check-row input[type=checkbox] { margin-top: 1px; }
+.install .check-row > span { display: block; font-size: 12px; }
+.install .check-row .hint-line { margin: 1px 0 0; }
+
+.install-progress { margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--bevel-dark); }
+.install-progress-head {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 10px;
+  margin-bottom: 6px; font-size: 12px; color: #d8d8d8;
+}
+.install-progress-head span { color: var(--c-cyan); font-variant-numeric: tabular-nums; }
+.progress-track {
+  height: 9px; overflow: hidden;
+  background: #1b1b1b;
+  border: 1px solid var(--bevel-dark);
+  border-radius: 3px;
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(180deg, #5ac35a 0%, #2f8f2f 60%, #267426 100%);
+  transition: width .35s ease;
+}
+
+.install-steps {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 3px 10px;
+  margin: 10px 0;
+}
+.install-step {
+  display: flex; align-items: center; gap: 7px;
+  padding: 3px 7px; font-size: 11.5px; color: #8f8f8f;
+  background: #2b2b2b; border: 1px solid transparent; border-radius: 3px;
+}
+.install-step .punkt {
+  width: 14px; flex: 0 0 14px; text-align: center; font-weight: 700;
+}
+.install-step.running { color: #f0f0f0; border-color: var(--c-cyan); background: #3a3a3a; }
+.install-step.ok { color: #7fe07f; }
+.install-step.fail { color: #f09090; border-color: rgba(230, 60, 60, .45); }
+
+.install-actions { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; margin: 10px 0 8px; }
+.install-actions .hint-line { margin: 0; flex: 1; }
+
+.install-log {
+  max-height: 220px; overflow-y: auto;
+  padding: 8px 10px;
+  background: var(--console-bg);
+  border: 1px solid rgba(0, 0, 0, .6);
+  border-radius: 2px;
+  font-family: Consolas, 'Courier New', monospace;
+  font-size: 11px; line-height: 1.45;
+  color: #c3c3c3;
+  user-select: text;
+}
+.install-log .line { white-space: pre-wrap; word-break: break-word; }
+.install-log .line.dim { color: #595959; }

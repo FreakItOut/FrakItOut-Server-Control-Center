@@ -1,0 +1,60 @@
+export default {
+  de: {
+    guilds: {
+      title: 'Gilden',
+      count: '{n} Gilden',
+      reload: 'Neu laden',
+      search: 'Gilde suchen …',
+      readOnly: 'Rein lesend – Verwaltung bleibt im Spiel.',
+      loading: 'Lade Gilden …',
+      loadingDetail: 'Lade Mitglieder …',
+      empty: 'Keine Gilden gefunden.',
+      notAvailable: 'Diese Datenbank kennt keine Gildentabellen.',
+      name: 'Gilde',
+      members: 'Mitglieder',
+      avgLevel: 'Ø Stufe',
+      leader: 'Leiter',
+      bank: 'Gildenbank',
+      created: 'Gegründet',
+      detailTitle: 'Gilde {name}',
+      close: 'Schließen',
+      member: 'Mitglied',
+      rank: 'Rang',
+      level: 'Stufe',
+      class: 'Klasse',
+      status: 'Status',
+      lastSeen: 'Zuletzt online',
+      online: 'online',
+      offline: 'offline'
+    }
+  },
+  en: {
+    guilds: {
+      title: 'Guilds',
+      count: '{n} guilds',
+      reload: 'Reload',
+      search: 'Search guild …',
+      readOnly: 'Read-only – management stays in game.',
+      loading: 'Loading guilds …',
+      loadingDetail: 'Loading members …',
+      empty: 'No guilds found.',
+      notAvailable: 'This database has no guild tables.',
+      name: 'Guild',
+      members: 'Members',
+      avgLevel: 'Avg level',
+      leader: 'Leader',
+      bank: 'Guild bank',
+      created: 'Founded',
+      detailTitle: 'Guild {name}',
+      close: 'Close',
+      member: 'Member',
+      rank: 'Rank',
+      level: 'Level',
+      class: 'Class',
+      status: 'Status',
+      lastSeen: 'Last online',
+      online: 'online',
+      offline: 'offline'
+    }
+  }
+}

@@ -1,0 +1,33 @@
+# Dependencies and build output
+node_modules/
+renderer/
+release/
+dist/
+
+# Local toolchains, vendor folders and old build leftovers
+deps/
+freakitout-final/
+freakitout-installer/
+__cmake_systeminformation/
+
+# Runtime configuration and credentials
+config.json
+config.*.json
+.env
+.env.*
+
+# Signing material
+*.pfx
+*.p12
+*.pem
+
+# Installer / server runs
+logs/
+*.log
+
+# Temporary check and monitor scripts
+tmp-*
+
+# System
+Thumbs.db
+.DS_Store

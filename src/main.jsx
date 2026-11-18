@@ -1,0 +1,20 @@
+import React from 'react'
+import { createRoot } from 'react-dom/client'
+import { HashRouter } from 'react-router-dom'
+import App from './App.jsx'
+import { AppErrorBoundary } from './components/ErrorBoundary.jsx'
+import { I18nProvider } from './i18n'
+import './styles.css'
+import './theme.css'
+
+createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <I18nProvider>
+      <AppErrorBoundary>
+        <HashRouter>
+          <App />
+        </HashRouter>
+      </AppErrorBoundary>
+    </I18nProvider>
+  </React.StrictMode>
+)
