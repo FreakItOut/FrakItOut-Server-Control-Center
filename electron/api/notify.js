@@ -109,7 +109,7 @@ function melde (titel, text) {
  * funktionieren, und landet zugleich im Meldungsverlauf.
  */
 function test () {
-  melde('FrakItOut Testmeldung', 'Wenn du das siehst, funktionieren die Benachrichtigungen.')
+  melde('FreakItOut Testmeldung', 'Wenn du das siehst, funktionieren die Benachrichtigungen.')
   return { ok: true }
 }
 

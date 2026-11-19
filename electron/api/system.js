@@ -1312,7 +1312,7 @@ async function diagnoseBericht () {
 
   const maskiere = wert => (wert ? '***gesetzt***' : '(nicht gesetzt)')
   const zeilen = [
-    'FrakItOut Server Control Center - Diagnosebericht',
+    'FreakItOut Server Control Center - Diagnosebericht',
     `Erstellt: ${new Date().toISOString()}`,
     `Panel-Version: ${version}`,
     '',

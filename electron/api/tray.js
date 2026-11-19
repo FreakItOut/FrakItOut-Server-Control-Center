@@ -29,7 +29,7 @@ function erzeugen (mainWindow, app) {
     const symbol = path.join(__dirname, '..', '..', 'build', 'icon.png')
     if (!fs.existsSync(symbol)) return null
     const tray = new Tray(symbol)
-    tray.setToolTip('FrakItOut Server Control Center')
+    tray.setToolTip('FreakItOut Server Control Center')
     tray.setContextMenu(Menu.buildFromTemplate([
       {
         label: 'Panel zeigen',
@@ -118,7 +118,7 @@ function statusTooltip (status) {
     if (!trayObjekt) return
     const zeichen = k => (status[k] && status[k].running ? '✓' : '·')
     trayObjekt.setToolTip(
-      `FrakItOut Server Control Center  ·  World ${zeichen('world')}  Auth ${zeichen('auth')}  DB ${zeichen('db')}`
+      `FreakItOut Server Control Center  ·  World ${zeichen('world')}  Auth ${zeichen('auth')}  DB ${zeichen('db')}`
     )
   } catch (_) {}
 }

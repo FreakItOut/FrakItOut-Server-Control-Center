@@ -2,11 +2,18 @@
 
 **English** | [Deutsch](CHANGELOG.de.md)
 
-All notable changes to FrakItOut Server Control Center are documented here. The format is based on
+All notable changes to FreakItOut Server Control Center are documented here. The format is based on
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres to
 [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
+
+## [1.0.2] - 2026-11-19
+
+### Changed
+- Project and application renamed from **FrakItOut** to **FreakItOut** throughout the app, package
+  metadata, documentation and release artifacts.
+- GitHub repository renamed to `FreakItOut-Server-Control-Center`; existing links redirect.
 
 ## [1.0.1] - 2026-11-19
 

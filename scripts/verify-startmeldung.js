@@ -196,7 +196,7 @@ app.whenReady().then(async () => {
    * nichts. Also nachsehen, ob dieselbe Suche einen eingebauten Text
    * findet - und dass sie echte Versionsnummern erkennt.
    */
-  const echteFassung = 'FrakItOut Server Control Center 1.0.0 für Azeroth-Core gestartet ... OK'
+  const echteFassung = 'FreakItOut Server Control Center 1.0.0 für Azeroth-Core gestartet ... OK'
   const gef = versionGefunden(echteFassung)
   pruefe(Boolean(gef), `eine echte Anzeige mit Version wird erkannt (${gef ? 'gefunden' : 'uebersehen'})`)
   if (!gef) sag(`    Muster erkennt "${echteFassung}" nicht`)

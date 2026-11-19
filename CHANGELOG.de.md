@@ -2,11 +2,18 @@
 
 [English](CHANGELOG.md) | **Deutsch**
 
-Alle nennenswerten Änderungen am FrakItOut Server Control Center. Das Format orientiert sich an
+Alle nennenswerten Änderungen am FreakItOut Server Control Center. Das Format orientiert sich an
 [Keep a Changelog](https://keepachangelog.com/de/1.1.0/), die Versionierung folgt
 [Semantic Versioning](https://semver.org/lang/de/).
 
 ## [Unveröffentlicht]
+
+## [1.0.2] - 2026-11-19
+
+### Geändert
+- Projekt und Anwendung durchgängig von **FrakItOut** in **FreakItOut** umbenannt: App, Paketname,
+  App-ID, Dokumentation und Release-Dateien.
+- GitHub-Repository in `FreakItOut-Server-Control-Center` umbenannt; bestehende Links leiten weiter.
 
 ## [1.0.1] - 2026-11-19
 

@@ -71,7 +71,7 @@ function createWindow () {
     backgroundColor: '#0a0a0c',
     show: true,
     autoHideMenuBar: true,
-    title: 'FrakItOut Server Control Center für Azeroth-Core',
+    title: 'FreakItOut Server Control Center für Azeroth-Core',
     /*
      * Eigene Titelleiste zeichnen, aber die nativen Fensterknoepfe behalten.
      *

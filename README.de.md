@@ -1,15 +1,15 @@
 <p align="center">
-  <img src="public/logo.png" width="96" alt="FrakItOut Logo">
+  <img src="public/logo.png" width="96" alt="FreakItOut Logo">
 </p>
 
-<h1 align="center">FrakItOut Server Control Center</h1>
+<h1 align="center">FreakItOut Server Control Center</h1>
 
 <p align="center">
   Ein natives Windows-Verwaltungspanel für <strong>AzerothCore</strong> 3.3.5 (Wrath of the Lich King).
 </p>
 
 <p align="center">
-  <a href="https://github.com/FreakItOut/FrakItOut-Server-Control-Center/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/FreakItOut/FrakItOut-Server-Control-Center?label=release"></a>
+  <a href="https://github.com/FreakItOut/FreakItOut-Server-Control-Center/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/FreakItOut/FreakItOut-Server-Control-Center?label=release"></a>
   <img alt="Plattform" src="https://img.shields.io/badge/platform-Windows%2010%20%7C%2011-0078D6">
   <a href="LICENSE"><img alt="Lizenz" src="https://img.shields.io/badge/license-MIT-green"></a>
   <img alt="Sprachen" src="https://img.shields.io/badge/UI-Deutsch%20%7C%20English-lightgrey">
@@ -25,7 +25,7 @@
 
 ## Was ist das?
 
-Das FrakItOut Server Control Center ist eine Electron-Desktop-App, die die tägliche Arbeit an einem
+Das FreakItOut Server Control Center ist eine Electron-Desktop-App, die die tägliche Arbeit an einem
 privaten AzerothCore-Server in einem Fenster bündelt: Core installieren und aktualisieren, Dienste
 starten und stoppen, Konten und Charaktere verwalten, Sicherungen erstellen und zurückspielen,
 Modul-Konfiguration bearbeiten und den Rechner im Blick behalten.
@@ -90,7 +90,7 @@ frische geführte Installation startet immer aus dem offiziellen Repository.
 ## Download
 
 Die neueste portable EXE gibt es unter
-[Releases](https://github.com/FreakItOut/FrakItOut-Server-Control-Center/releases/latest).
+[Releases](https://github.com/FreakItOut/FreakItOut-Server-Control-Center/releases/latest).
 
 - Die App ist **portable**: EXE in einen beschreibbaren Ordner legen und starten.
 - `config.json` entsteht neben der EXE und enthält Datenbank- und SOAP-Zugangsdaten im Klartext.
@@ -132,7 +132,7 @@ npm run pruefe     # alle statischen Prüfungen und gemockten Integrationstests
 ```
 
 Das portable Paket liegt danach als
-`release/FrakItOut Server Control Center 1.0.0.exe` vor.
+`release/FreakItOut Server Control Center 1.0.2.exe` vor.
 
 ## Konfiguration und Sicherheit
 
@@ -185,7 +185,7 @@ eröffnen.
 
 ## Lizenz
 
-[MIT](LICENSE) © 2026 FrakItOut
+[MIT](LICENSE) © 2026 FreakItOut
 
 ## Danksagung
 

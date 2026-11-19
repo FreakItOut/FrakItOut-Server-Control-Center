@@ -76,7 +76,7 @@ const SUGGESTIONS = [
 const MAX_BOTS = 10000
 
 const TEMPLATE = `# Bot-Konfiguration
-# Vom FrakItOut Server Control Center erzeugt.
+# Vom FreakItOut Server Control Center erzeugt.
 # Aenderungen an der Bot-Anzahl greifen erst nach einem Neustart des
 # Worldservers.
 #

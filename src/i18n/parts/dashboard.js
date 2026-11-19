@@ -2,7 +2,7 @@
 export default {
   de: {
     dashboard: {
-      started: 'FrakItOut Server Control Center für Azeroth-Core gestartet ... OK',
+      started: 'FreakItOut Server Control Center für Azeroth-Core gestartet ... OK',
       dbReachable: 'Datenbank erreichbar (MySQL-Verbindung aktiv)',
       dbUnreachable: 'Datenbank nicht erreichbar — bitte Einstellungen prüfen',
       dbHint: 'Denkt dran: unter „Einstellungen" Datenbank und Server-Pfade eintragen.',
@@ -161,7 +161,7 @@ export default {
   },
   en: {
     dashboard: {
-      started: 'FrakItOut Server Control Center for Azeroth-Core started ... OK',
+      started: 'FreakItOut Server Control Center for Azeroth-Core started ... OK',
       dbReachable: 'Database reachable (MySQL connection active)',
       dbUnreachable: 'Database not reachable — please check Settings',
       dbHint: 'Remember: enter database and server paths under „Settings".',

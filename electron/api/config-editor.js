@@ -143,7 +143,7 @@ function writeSettings ({ file, entries }) {
   if (missing.length) {
     while (out.length && out[out.length - 1].trim() === '') out.pop()
     out.push('')
-    out.push('# --- vom FrakItOut Server Control Center hinzugefuegt ---')
+    out.push('# --- vom FreakItOut Server Control Center hinzugefuegt ---')
     for (const k of missing) out.push(`${k} = ${wanted.get(k)}`)
   }
 

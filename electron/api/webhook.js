@@ -71,7 +71,7 @@ function senden (titel, text) {
 // Testknopf: eine sichtbare Nachricht schicken
 async function testen () {
   if (!konfig().url) throw new Error('Keine Webhook-URL gesetzt.')
-  const r = await senden('FrakItOut Server Control Center', 'Testmeldung - Webhook ist eingerichtet. Ab sofort kommen hier Server- und Update-Ereignisse an.')
+  const r = await senden('FreakItOut Server Control Center', 'Testmeldung - Webhook ist eingerichtet. Ab sofort kommen hier Server- und Update-Ereignisse an.')
   if (!r.ok) throw new Error(`Webhook antwortete nicht erfolgreich${r.error ? `: ${r.error}` : r.status ? ` (HTTP ${r.status})` : '.'}`)
   return { ok: true }
 }

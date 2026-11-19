@@ -1,21 +1,21 @@
 {
-  "name": "frakitout-server-control-center",
-  "version": "1.0.1",
+  "name": "freakitout-server-control-center",
+  "version": "1.0.2",
   "description": "Native Windows control center for AzerothCore 3.3.5 servers",
   "main": "electron/main.js",
   "author": {
-    "name": "FrakItOut",
+    "name": "FreakItOut",
     "url": "https://github.com/FreakItOut"
   },
   "license": "MIT",
   "private": true,
   "repository": {
     "type": "git",
-    "url": "https://github.com/FreakItOut/FrakItOut-Server-Control-Center.git"
+    "url": "https://github.com/FreakItOut/FreakItOut-Server-Control-Center.git"
   },
-  "homepage": "https://github.com/FreakItOut/FrakItOut-Server-Control-Center#readme",
+  "homepage": "https://github.com/FreakItOut/FreakItOut-Server-Control-Center#readme",
   "bugs": {
-    "url": "https://github.com/FreakItOut/FrakItOut-Server-Control-Center/issues"
+    "url": "https://github.com/FreakItOut/FreakItOut-Server-Control-Center/issues"
   },
   "engines": {
     "node": ">=20",
@@ -44,8 +44,8 @@
     "wait-on": "^8.0.1"
   },
   "build": {
-    "appId": "com.frakitout.servercontrol",
-    "productName": "FrakItOut Server Control Center",
+    "appId": "com.freakitout.servercontrol",
+    "productName": "FreakItOut Server Control Center",
     "files": [
       "electron/**/*",
       "renderer/**/*",

@@ -528,7 +528,7 @@ function App () {
             <div className="nav-brand">
               <img
                 src="./logo-freak.png"
-                alt="FrakItOut"
+                alt="FreakItOut"
                 onError={e => { e.currentTarget.closest('.nav-brand')?.remove() }}
               />
             </div>

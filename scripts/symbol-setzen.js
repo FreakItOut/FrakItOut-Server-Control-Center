@@ -42,7 +42,7 @@ const RELEASE = path.join(WURZEL, 'release')
 const VERSION_STRINGS = {
   FileDescription: `${PKG.build.productName} fuer AzerothCore`,
   ProductName: PKG.build.productName,
-  CompanyName: 'FrakItOut'
+  CompanyName: 'FreakItOut'
 }
 
 /*

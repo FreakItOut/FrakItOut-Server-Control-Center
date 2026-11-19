@@ -2,7 +2,7 @@
 export default {
   // ---------- Frame ----------
   app: {
-    title: 'FrakItOut Server Control Center for Azeroth-Core',
+    title: 'FreakItOut Server Control Center for Azeroth-Core',
     notFound: 'Page not found.',
     setupCheck: 'Checking setup …',
     status: {

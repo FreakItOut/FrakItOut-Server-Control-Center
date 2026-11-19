@@ -493,7 +493,7 @@ async function createAccount ({ username, password, email = '', gmlevel = 0 }) {
     vals
   ).catch(err => {
     // idx_username ist UNIQUE und case-insensitive: ein Bestandsaccount
-    // "FrakItOut" blockiert also auch "freakitout". MySQL meldet das als
+    // "FreakItOut" blockiert also auch "freakitout". MySQL meldet das als
     // ER_DUP_ENTRY mit kryptischem Text - fuer die Anzeige aufbereiten.
     if (err && err.code === 'ER_DUP_ENTRY') {
       const vorhanden = /for key '([^']+)'/.exec(err.sqlMessage || '')

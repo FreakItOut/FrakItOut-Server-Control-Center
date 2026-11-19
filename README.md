@@ -1,15 +1,15 @@
 <p align="center">
-  <img src="public/logo.png" width="96" alt="FrakItOut logo">
+  <img src="public/logo.png" width="96" alt="FreakItOut logo">
 </p>
 
-<h1 align="center">FrakItOut Server Control Center</h1>
+<h1 align="center">FreakItOut Server Control Center</h1>
 
 <p align="center">
   A native Windows control center for <strong>AzerothCore</strong> 3.3.5 (Wrath of the Lich King).
 </p>
 
 <p align="center">
-  <a href="https://github.com/FreakItOut/FrakItOut-Server-Control-Center/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/FreakItOut/FrakItOut-Server-Control-Center?label=release"></a>
+  <a href="https://github.com/FreakItOut/FreakItOut-Server-Control-Center/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/FreakItOut/FreakItOut-Server-Control-Center?label=release"></a>
   <img alt="Platform" src="https://img.shields.io/badge/platform-Windows%2010%20%7C%2011-0078D6">
   <a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/license-MIT-green"></a>
   <img alt="Languages" src="https://img.shields.io/badge/UI-Deutsch%20%7C%20English-lightgrey">
@@ -25,7 +25,7 @@
 
 ## What is it?
 
-FrakItOut Server Control Center is an Electron desktop app that bundles the everyday work of a
+FreakItOut Server Control Center is an Electron desktop app that bundles the everyday work of a
 private AzerothCore server into one window: install and update the core, start and stop the
 services, manage accounts and characters, handle backups and restores, edit module configuration,
 and keep an eye on the machine.
@@ -85,7 +85,7 @@ always starts from the official repository.
 ## Download
 
 Download the latest portable EXE from
-[Releases](https://github.com/FreakItOut/FrakItOut-Server-Control-Center/releases/latest).
+[Releases](https://github.com/FreakItOut/FreakItOut-Server-Control-Center/releases/latest).
 
 - The app is **portable**: put the EXE in a writable folder and start it.
 - `config.json` is created next to the EXE and contains database and SOAP credentials in plain text.
@@ -125,7 +125,7 @@ npm run dist       # portable Windows EXE in release/
 npm run pruefe     # run all static checks and mocked integration tests
 ```
 
-The portable build ends up as `release/FrakItOut Server Control Center 1.0.0.exe`.
+The portable build ends up as `release/FreakItOut Server Control Center 1.0.2.exe`.
 
 ## Configuration and security
 
@@ -176,7 +176,7 @@ not open a public issue with credentials or personal data.
 
 ## License
 
-[MIT](LICENSE) © 2026 FrakItOut
+[MIT](LICENSE) © 2026 FreakItOut
 
 ## Acknowledgements
 
