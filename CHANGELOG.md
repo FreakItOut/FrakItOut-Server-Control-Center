@@ -8,6 +8,19 @@ All notable changes to FrakItOut Server Control Center are documented here. The 
 
 ## [Unreleased]
 
+## [1.0.1] - 2026-11-19
+
+### Added
+- README (German and English) now states that existing repacks can be managed as well, while the
+  guided installation continues to use the official AzerothCore source.
+
+### Fixed
+- On first start the dashboard could appear while the setup status was still being checked, which
+  made it look as if the setup wizard never loaded. A loading screen is shown until the check is
+  finished, then the wizard opens when the installation is incomplete.
+- If the setup status check fails, the wizard is now shown instead of silently treating the panel as
+  configured.
+
 ## [1.0.0] - 2026-11-18
 
 First public release. The panel was developed over 42 iterative improvement rounds; this entry

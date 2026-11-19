@@ -19,7 +19,7 @@
 
 > Kein offizielles Produkt von Blizzard Entertainment oder dem AzerothCore-Projekt. Dieses
 > Repository enthält keinen Spielclient, keine Spieldaten und keinen Repack. Das Panel verwaltet
-> eine vorhandene, offizielle AzerothCore-Installation.
+> eine vorhandene AzerothCore-Installation — offiziell oder als Repack.
 
 ---
 
@@ -30,10 +30,11 @@ privaten AzerothCore-Server in einem Fenster bündelt: Core installieren und akt
 starten und stoppen, Konten und Charaktere verwalten, Sicherungen erstellen und zurückspielen,
 Modul-Konfiguration bearbeiten und den Rechner im Blick behalten.
 
-Grundlage sind ausschließlich die **offiziellen AzerothCore-Quellen**
-(`azerothcore/azerothcore-wotlk`). Das Panel liefert keinen Repack mit und empfiehlt keinen.
-Verbreitete Module wie Playerbots und Individual Progression werden unterstützt, der Core kommt
-aber immer aus dem offiziellen Repository.
+Der geführte Installations- und Update-Weg nutzt die **offiziellen AzerothCore-Quellen**
+(`azerothcore/azerothcore-wotlk`). **Vorhandene Repacks können ebenfalls verwaltet werden** — auch
+Bundles mit Playerbots und Individual Progression. Das Panel liefert keinen Repack mit und
+überschreibt nichts hinter dem Rücken; es arbeitet mit dem Serverordner, den du auswählst. Eine
+frische geführte Installation startet immer aus dem offiziellen Repository.
 
 ## Funktionen
 
@@ -100,8 +101,8 @@ Die neueste portable EXE gibt es unter
 
 **Für die Nutzung**
 - Windows 10 oder Windows 11 (64 Bit)
-- Eine vorhandene AzerothCore-3.3.5-Installation oder genug Plattenplatz (25 GB+), um eine
-  anzulegen
+- Eine vorhandene AzerothCore-3.3.5-Installation (offiziell oder Repack) oder genug Plattenplatz
+  (25 GB+), um eine anzulegen
 - MySQL 8.x (der Assistent kann eine portable Instanz einrichten)
 
 **Für den Quellstand**
@@ -168,6 +169,9 @@ mehr. Ein grüner Lauf endet mit `ALLES BESTANDEN.`
 ## Kompatibilität
 
 - AzerothCore WotLK 3.3.5a (offizielle Quelle)
+- **Vorhandene Repacks werden unterstützt**: Panel auf den Repack-Ordner zeigen lassen und dessen
+  Configs, Datenbank und Programme verwenden. Die geführte Installation selbst nutzt die offizielle
+  Quelle.
 - Playerbots und Individual Progression werden unterstützt und in einer Repack-Umgebung getestet;
   das Panel selbst hängt nicht von ihnen ab.
 - Nur Windows. Die Prozesssteuerung nutzt PowerShell für sauberes Beenden und unsichtbare Konsolen.

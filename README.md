@@ -18,7 +18,8 @@
 **English** | [Deutsch](README.de.md)
 
 > Not affiliated with Blizzard Entertainment or the AzerothCore project. This repository contains
-> no game client, no game data and no repack. It manages an existing official AzerothCore installation.
+> no game client, no game data and no repack. It manages an existing AzerothCore installation —
+> official or repack.
 
 ---
 
@@ -29,9 +30,11 @@ private AzerothCore server into one window: install and update the core, start a
 services, manage accounts and characters, handle backups and restores, edit module configuration,
 and keep an eye on the machine.
 
-It is built for the **official AzerothCore sources** (`azerothcore/azerothcore-wotlk`). It does not
-ship or recommend repacks. Popular modules such as Playerbots and Individual Progression are
-supported, but the core always comes from the official repository.
+The guided installation and update path uses the **official AzerothCore sources**
+(`azerothcore/azerothcore-wotlk`). Existing **repacks can be managed as well** — including bundles
+with Playerbots and Individual Progression. The panel does not ship a repack and does not overwrite
+files behind your back; it works with the server folder you point it to. A fresh guided installation
+always starts from the official repository.
 
 ## Features
 
@@ -93,7 +96,8 @@ Download the latest portable EXE from
 
 **To use the app**
 - Windows 10 or Windows 11 (64-bit)
-- An existing AzerothCore 3.3.5 installation, or enough disk space (25 GB+) to install one
+- An existing AzerothCore 3.3.5 installation (official or repack), or enough disk space (25 GB+) to
+  install one
 - MySQL 8.x (the installer can set up a portable instance)
 
 **To build from source**
@@ -158,6 +162,8 @@ with `ALLES BESTANDEN.`
 ## Compatibility
 
 - AzerothCore WotLK 3.3.5a (official source)
+- Existing **repacks are supported**: point the panel at the repack folder and use its configs,
+  database and executables. The guided installation itself uses the official source.
 - Playerbots and Individual Progression are supported and tested in a repack environment; the panel
   itself does not depend on them.
 - Windows only. The process control uses PowerShell for graceful shutdown and hidden consoles.

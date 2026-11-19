@@ -8,6 +8,19 @@ Alle nennenswerten Änderungen am FrakItOut Server Control Center. Das Format or
 
 ## [Unveröffentlicht]
 
+## [1.0.1] - 2026-11-19
+
+### Hinzugefügt
+- README (Deutsch und Englisch) weist jetzt darauf hin, dass auch vorhandene Repacks verwaltet
+  werden können; die geführte Installation nutzt weiterhin die offizielle AzerothCore-Quelle.
+
+### Behoben
+- Beim ersten Start konnte kurz die Übersicht erscheinen, während der Einrichtungsstatus noch
+  geprüft wurde — dadurch wirkte es, als würde der Assistent nicht laden. Jetzt erscheint eine
+  Ladeanzeige, danach öffnet sich der Assistent bei unvollständiger Einrichtung.
+- Schlägt die Prüfung des Einrichtungsstatus fehl, wird der Assistent angezeigt, statt das Panel
+  stillschweigend als eingerichtet zu behandeln.
+
 ## [1.0.0] - 2026-11-18
 
 Erste öffentliche Veröffentlichung. Das Panel entstand über 42 iterative Verbesserungsrunden;

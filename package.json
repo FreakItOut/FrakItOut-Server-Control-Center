@@ -1,6 +1,6 @@
 {
   "name": "frakitout-server-control-center",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Native Windows control center for AzerothCore 3.3.5 servers",
   "main": "electron/main.js",
   "author": {

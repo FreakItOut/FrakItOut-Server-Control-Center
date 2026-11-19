@@ -164,7 +164,12 @@ function App () {
     api.system
       .setupStatus()
       .then(setSetup)
-      .catch(() => setSetup({ eingerichtet: true, offen: [] }))
+      /*
+       * Schlaegt die Pruefung fehl, ist der Zustand unbekannt. Dann lieber
+       * den Assistenten zeigen als eine unkonfigurierte Uebersicht - sonst
+       * wirkt der erste Start so, als waere der Assistent gar nicht da.
+       */
+      .catch(() => setSetup({ eingerichtet: false, offen: ['world', 'auth', 'worldConf', 'authConf', 'db'] }))
   }, [])
 
   /*
@@ -366,6 +371,13 @@ function App () {
       </span>
     </NavLink>
   )
+
+  // Solange der Einrichtungsstatus geprueft wird, nicht schon die Uebersicht
+  // zeigen: Bei einer frischen Installation dauerte die Pruefung einen
+  // Moment, und der Assistent wirkte dadurch "nicht geladen".
+  if (setup === null) {
+    return <div className="spinner">{t('app.setupCheck')}</div>
+  }
 
   // Solange die Einrichtung unvollstaendig ist, gibt es nichts zu bedienen.
   if (setupLaufend) {

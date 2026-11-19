@@ -5,6 +5,7 @@ export default {
   app: {
     title: 'FrakItOut Server Control Center für Azeroth-Core',
     notFound: 'Seite nicht gefunden.',
+    setupCheck: 'Einrichtung wird geprüft …',
     status: {
       emulator: 'Emulator:',
       auth: 'Authserver:',
